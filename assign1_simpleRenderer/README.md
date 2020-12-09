@@ -1,0 +1,20 @@
+#Height Fields Using Shaders #
+
+## An Overview ##
+Height fields may be found in many applications of computer graphics. They are used to represent terrain in video games and simulations, and also often utilized to represent data in three dimensions. This assignment asks you to create a height field based on the data from an image which the user specifies at the command line, and to allow the user to manipulate the height field in three dimensions by rotating, translating, or scaling it. You also have to implement a vertex shader that performs smoothing of the geometry, and re-adjusts the geometry color. After the completion of your program, you will use it to create an animation. You will program the assignment using OpenGL's core profile.
+
+This assignment is intended as a hands-on introduction to OpenGL and programming in three dimensions. It teaches the OpenGL's core profile and shader-based programming. The provided starter gives the functionality to initialize GLUT, read and write a JPEG image, handle mouse and keyboard input, and display one triangle to the screen. You must write code to handle camera transformations, transform the landscape (translate/rotate/scale), and render the heightfield. You must also write a shader to perform geometry smoothing and re-color the terrain accordingly. Please see the OpenGL Programming Guide for information, or OpenGL.org.
+
+## Background Information ##
+A height field is a visual representation of a function which takes as input a two-dimensional point and returns a scalar value ("height") as output.
+
+Rendering a height field over arbitrary coordinates is somewhat tricky--we will simplify the problem by making our function piece-wise. Visually, the domain of our function is a two-dimensional grid of points, and a height value is defined at each point. We can render this data using only a point at each defined value, or use it to approximate a surface by connecting the points with triangles in 3D.
+
+You will be using image data from a grayscale JPEG file to create your height field, such that the two dimensions of the grid correspond to the two dimensions of the image and the height value is a function of the image grayscale level. Since you will be working with grayscale image, the bytes per pixel (i.e., ImageIO::getBytesPerPixel) is always 1 and you don't have to worry about the case where the bytes per pixel is 3 (i.e., RGB images).
+
+Render Points, Lines and Triangles
+Your program needs to render the height field as points (when the key "1" is pressed on the keyboard), lines ("wireframe"; key "2"), or solid triangles (key "3"). The points, lines and solid triangles must be modeled using GL_POINTS, GL_LINES, GL_TRIANGLES, or their "LOOP" or "STRIP" variants. Usage of glPolygonMode (or similar) to achieve point or line rendering is not permitted. If in doubt, please ask the instructor/TA.
+
+## Render Points, Lines and Triangles ##
+Your program needs to render the height field as points (when the key "1" is pressed on the keyboard), lines ("wireframe"; key "2"), or solid triangles (key "3"). The points, lines and solid triangles must be modeled using GL_POINTS, GL_LINES, GL_TRIANGLES, or their "LOOP" or "STRIP" variants. Usage of glPolygonMode (or similar) to achieve point or line rendering is not permitted. If in doubt, please ask the instructor/TA.
+
