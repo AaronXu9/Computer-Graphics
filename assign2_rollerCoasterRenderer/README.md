@@ -1,5 +1,5 @@
 # Simulating a Roller Coaster #
-![](a2_images/a2_image1.png)
+![](a2_images/a2_image2.png)
 
 ## An Overview ##
 
@@ -35,7 +35,7 @@ Level 3 (rail cross-section): Modify the appearance of the coaster itself: inste
 Level 4 (ground): Next, add the ground. You can use a plane for the ground. It should be texture-mapped with an image of your choice. You need to write a vertex and fragment shader to do texture mapping. You then need to create a new pipeline program in your C/C++ code, and make other necessary modifications. We call this shader the "texture shader". The texture shader must co-exist in your code with the milestone shader. Each one should be a separate pipeline program. The texture shader should be used to render the ground plane, and the milestone shader should be used to render the rail cross-section (same as in Level 3). Both objects should be visible on the screen at the same time, each one shaded with their respective shader. There are plenty of free texture sites on the Web. One choice is texture forest, and there are many others; search for them on Google. For image size, good choices are 512x512 or 1024x1024. You can use any software you wish to scale and/or edit your texture image.
 
 Level 5 (Phong shading): Modify the milestone shader so that it computes Phong shading (also known as "per-pixel lighting"). Use 1 directional light to light the scene. Rename the "color" shader variable (which contains normals, as explained in Level 3) into "normal". In this way, there is no need to re-create the VBO for normals. You need to implement both the vertex and fragment shaders to perform Phong shading. You can see the example vertex and fragment shaders in the lecture "Lighting and Shading" for how to do this. The ground plane should continue to be rendered using the texture shader, in the same way as in Level 4. The rail object should be rendered using Phong shading. Both the ground plane and the rail should be visible at the same time.
-![](a2_images/a2_image2.png)
+![](a2_images/a2_image1.png)
 
 ## Extras ## 
 
