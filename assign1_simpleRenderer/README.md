@@ -18,16 +18,29 @@ Your program needs to render the height field as points (when the key "1" is pre
 ## Render Points, Lines and Triangles ##
 Your program needs to render the height field as points (when the key "1" is pressed on the keyboard), lines ("wireframe"; key "2"), or solid triangles (key "3"). The points, lines and solid triangles must be modeled using GL_POINTS, GL_LINES, GL_TRIANGLES, or their "LOOP" or "STRIP" variants. Usage of glPolygonMode (or similar) to achieve point or line rendering is not permitted. If in doubt, please ask the instructor/TA.
 
+![](https://github.com/AaronXu9/Computer-Graphics/blob/main/assign1_simpleRenderer/a1_images/a1_image1.png)
+
 ## Vertex Shader Requirement ## 
 
 You should write a vertex shader that provides two rendering modes. In the first mode, simply transform the vertex with the modelview and projection matrix. Leave the color unchanged. This vertex shader is already provided in the starter code. This mode should be used for point rendering (key "1"), line rendering (key "2"), and triangle rendering (key "3").
 
 In the second mode (key "4"), change the vertex position to the average position of the four neighboring vertices in the vertex shader. Specifically, replace p_center with (p_left + p_right + p_down + p_up) / 4 (see image). This will have the effect of smoothening the terrain (the effect is most visible at low image resolutions, e.g., 128 x 128). Then transform the resulting vertex position with the modelview and projection matrix in the vertex shader as usual.
 
-![](https://github.com/AaronXu9/Computer-Graphics/blob/main/assign1_simpleRenderer/a1_images/a1_image1.png)
+![](https://github.com/AaronXu9/Computer-Graphics/blob/main/assign1_simpleRenderer/a1_images/a1_image2.png)
 
 The positions of the four neighboring vertices should be passed into the vertex shader as additional attributes, in the same way as vertex position and color. In order to accommodate this, you should create additional VBOs. For example, one approach is to create 4 VBOs of 3-floats: position of the left vertex, right vertex, up vertex, down vertex. Note that these positions include the height of the vertex as one of its coordinates.
 
 You should write one vertex shader that satisfies the above requirements. In order to switch between the two modes, you should create a uniform variable "uniform int mode" in the vertex shader, and set its value using the OpenGL function glUniform1i on the CPU, as follows. When the user presses keys "1", "2" or "3", mode should be set to 0, and when the user presses key "4", mode should be set to 1. When mode=0, the vertex shader should execute the first mode described above. When mode=1, the vertex shader should execute the second mode (smoothen the vertex position). You can achieve this using an "if" statement in the vertex shader. When mode=1, you should also correct the color in the vertex shader to correspond to the smoothened height, using the formula:
 
+
+## Test ##
+> cd hw1-starterCode
+> make
+> ./hw1 heightmap/spiral.jpg
+
+After successfully compiling the starter code and launching hw1, you should see a screen like this:
+![](a1_images/a1_image3.png)
+
+## Examples ##
+![](a1_images/a1_image4.png)
 
