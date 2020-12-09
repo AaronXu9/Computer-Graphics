@@ -1,4 +1,4 @@
-#Height Fields Using Shaders #
+# Height Fields Using Shaders #
 
 ## An Overview ##
 Height fields may be found in many applications of computer graphics. They are used to represent terrain in video games and simulations, and also often utilized to represent data in three dimensions. This assignment asks you to create a height field based on the data from an image which the user specifies at the command line, and to allow the user to manipulate the height field in three dimensions by rotating, translating, or scaling it. You also have to implement a vertex shader that performs smoothing of the geometry, and re-adjusts the geometry color. After the completion of your program, you will use it to create an animation. You will program the assignment using OpenGL's core profile.
@@ -24,4 +24,10 @@ You should write a vertex shader that provides two rendering modes. In the first
 
 In the second mode (key "4"), change the vertex position to the average position of the four neighboring vertices in the vertex shader. Specifically, replace p_center with (p_left + p_right + p_down + p_up) / 4 (see image). This will have the effect of smoothening the terrain (the effect is most visible at low image resolutions, e.g., 128 x 128). Then transform the resulting vertex position with the modelview and projection matrix in the vertex shader as usual.
 
-![](image)
+!()[a1_image/a1_image1]
+
+The positions of the four neighboring vertices should be passed into the vertex shader as additional attributes, in the same way as vertex position and color. In order to accommodate this, you should create additional VBOs. For example, one approach is to create 4 VBOs of 3-floats: position of the left vertex, right vertex, up vertex, down vertex. Note that these positions include the height of the vertex as one of its coordinates.
+
+You should write one vertex shader that satisfies the above requirements. In order to switch between the two modes, you should create a uniform variable "uniform int mode" in the vertex shader, and set its value using the OpenGL function glUniform1i on the CPU, as follows. When the user presses keys "1", "2" or "3", mode should be set to 0, and when the user presses key "4", mode should be set to 1. When mode=0, the vertex shader should execute the first mode described above. When mode=1, the vertex shader should execute the second mode (smoothen the vertex position). You can achieve this using an "if" statement in the vertex shader. When mode=1, you should also correct the color in the vertex shader to correspond to the smoothened height, using the formula:
+
+
