@@ -24,7 +24,7 @@ You should write a vertex shader that provides two rendering modes. In the first
 
 In the second mode (key "4"), change the vertex position to the average position of the four neighboring vertices in the vertex shader. Specifically, replace p_center with (p_left + p_right + p_down + p_up) / 4 (see image). This will have the effect of smoothening the terrain (the effect is most visible at low image resolutions, e.g., 128 x 128). Then transform the resulting vertex position with the modelview and projection matrix in the vertex shader as usual.
 
-!()[a1_image/a1_image1]
+!()[a1_images/a1_image1.png]
 
 The positions of the four neighboring vertices should be passed into the vertex shader as additional attributes, in the same way as vertex position and color. In order to accommodate this, you should create additional VBOs. For example, one approach is to create 4 VBOs of 3-floats: position of the left vertex, right vertex, up vertex, down vertex. Note that these positions include the height of the vertex as one of its coordinates.
 
