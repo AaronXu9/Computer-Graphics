@@ -18,3 +18,10 @@ Your program needs to render the height field as points (when the key "1" is pre
 ## Render Points, Lines and Triangles ##
 Your program needs to render the height field as points (when the key "1" is pressed on the keyboard), lines ("wireframe"; key "2"), or solid triangles (key "3"). The points, lines and solid triangles must be modeled using GL_POINTS, GL_LINES, GL_TRIANGLES, or their "LOOP" or "STRIP" variants. Usage of glPolygonMode (or similar) to achieve point or line rendering is not permitted. If in doubt, please ask the instructor/TA.
 
+## Vertex Shader Requirement ## 
+
+You should write a vertex shader that provides two rendering modes. In the first mode, simply transform the vertex with the modelview and projection matrix. Leave the color unchanged. This vertex shader is already provided in the starter code. This mode should be used for point rendering (key "1"), line rendering (key "2"), and triangle rendering (key "3").
+
+In the second mode (key "4"), change the vertex position to the average position of the four neighboring vertices in the vertex shader. Specifically, replace p_center with (p_left + p_right + p_down + p_up) / 4 (see image). This will have the effect of smoothening the terrain (the effect is most visible at low image resolutions, e.g., 128 x 128). Then transform the resulting vertex position with the modelview and projection matrix in the vertex shader as usual.
+
+![](image)
