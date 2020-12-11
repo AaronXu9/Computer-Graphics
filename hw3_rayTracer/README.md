@@ -47,40 +47,7 @@ For recursive reflection, you need to call your ray tracer recursively. Of cours
 
 
 ## FAQ ##
-FAQ
-1. Why do my spheres look somewhat squashed (like an "egg") ?
-To some degree, spheres will look like eggs (ellipsoids), when they are not centered on the screen. This is due to perspective distortion and is normal and to be expected. However, the distortion should not be severe. See the example solution with the five spheres on the assignment webpage: you can see that the two outermost spheres are slightly ellipsoidal in the resulting 2D image. Compare their shape to the shape of the center sphere (which looks like a circle). These are correct results.. some amount of ellipsoidal distortion is normal.
-
-That said, squashing can occur also if the aspect ratio is set incorrectly, or if the four corners of the image plane were not computed correctly, or if the rays were generated incorrectly. These would be wrong results.
-
-Note that the tan function in math.h takes RADIANS as argument, not degrees.
-
-/* tan example */
-#include <stdio.h>
-#include <math.h>
-
-#define PI 3.14159265
-
-int main ()
-{
-  double param, result;
-  param = 45.0;
-  result = tan (param*PI/180);
-  printf ("The tangent of %lf degrees is %lf.\n", param, result );
-  return 0;
-}
-2. Which normals to use for ray-triangle intersection?
-The scene file provides a normal for every triangle vertex. However, those normals should NOT be used for ray-triangle intersection. For the intersection calculation, you need to compute the normal of the plane containing the triangle. You do so by taking a cross product of two edges:
-
-A
- |\
- | \
- |  \
- -----
-B     C
-normal for ray-plane intersection = (B-A)x(C-A) (and you must normalize this vector)
-
-The vertex normals provided in the scene file must be used for Phong shading, i.e., when evaluating I = lightColor * (kd * (L dot N) + ks * (R dot V) ^ sh) . You must interpolate the vertex normals given in the scene file to the specific location of the ray-triangle intersection (using barycentric coordinates). You then use the resulting interpolated normal N in the above equation (also to compute R). This will give smooth specular highlights.
+![](a3_images/a3_image2.png)
 
 3. If L dot N, or R dot V are negative, should I clamp them to zero?
 If the angle between the view vector (V) and the reflected vector (R) is greater than 90 degrees, R dot V will be negative. In this case, the deviation between the reflection direction and the view direction is huge, i.e., we are very far from that case where the reflected and view direction nearly align and where we get specular highlights. So, there is no specular reflection in this case, and we can just clamp R dot V to zero.
